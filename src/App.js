@@ -2,6 +2,7 @@ import React from "react";
 import "./styles.css";
 
 export default function App() {
+  // const [value, setValue] = React.useState(["m", "gp"]); //You can pass an array into the value attribute, allowing you to select multiple options in a select tag
   const [value, setValue] = React.useState("m");
   function handleChange(event) {
     setValue(event.target.value);
@@ -9,13 +10,20 @@ export default function App() {
 
   function handleSubmit(event) {
     alert("You Chose : " + value);
+    event.preventDefault(); //if you dont use this... after alert the select will show the default value instead the selected value
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <label>
         Please Select your favourite flavour :
-        <select value={value} onChange={handleChange}>
+        <select
+          multiple={false}
+          /* multiple = {true} can be used when you pass value as an array*/ value={
+            value
+          }
+          onChange={handleChange}
+        >
           <option value="gp">grapefruit</option>
           <option value="orange">orange</option>
           <option value="le">lemon</option>
